@@ -26,7 +26,7 @@ aside{grid-row:1;background:var(--side);padding:22px 18px;overflow:auto}
 .logo img{width:36px;height:36px;display:block}
 nav button{width:100%;justify-content:flex-start;gap:10px;padding:7px 12px;border:2px solid transparent;border-radius:8px;font-size:14px;margin-bottom:6px;color:var(--mute);transition:background .2s,border-color .2s,color .2s}
 nav button:hover{background:var(--hover)}
-nav button[aria-current=page]{border-color:var(--ink);color:var(--ink);font-weight:500}
+nav button[aria-current=page]{background:var(--chip);color:var(--ink);font-weight:500}
 nav h3{font-size:13px;font-weight:500;margin:22px 12px 10px}
 main{grid-row:1;overflow:auto;padding:22px 30px;min-width:0}
 .top{display:flex;align-items:center;gap:12px;margin-bottom:22px}
@@ -40,14 +40,14 @@ main{grid-row:1;overflow:auto;padding:22px 30px;min-width:0}
 #view{transition:opacity .22s,transform .22s}
 #view.out{opacity:0;transform:translateY(8px)}
 .hero{display:flex;gap:22px;align-items:flex-end;margin-bottom:26px;flex-wrap:wrap}
-.cover{width:150px;height:150px;border-radius:4px;flex:none;display:flex;align-items:center;justify-content:center;font-size:56px;color:#fff;background-size:cover}
+.cover{width:150px;height:150px;border-radius:4px;flex:none;display:flex;align-items:center;justify-content:center;font-size:56px;color:#fff;background-size:cover;background-position:center}
 .hero h1{font-size:24px;margin:0 0 4px}
 .hero p{margin:0;font-weight:700;font-size:14px;color:var(--mute)}
 .strip{display:flex;gap:10px;margin-inline-start:auto}
 .strip .cover{width:62px;height:62px;font-size:22px;border-radius:3px;opacity:.9}
 .strip .cover:hover{opacity:1}
 h2{font-size:17px;margin:0 0 10px}
-.row{display:grid;grid-template-columns:1fr 140px 60px 34px;align-items:center;gap:10px;padding:9px 8px;border-radius:8px;font-size:14px;width:100%;text-align:start;transition:background .15s}
+.row{display:grid;grid-template-columns:var(--c);align-items:center;gap:10px;padding:9px 8px;border-radius:8px;font-size:14px;width:100%;text-align:start;transition:background .15s}
 .row:hover{background:var(--hover)}
 .row b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row span{color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -85,8 +85,27 @@ nav{display:flex;gap:4px}nav h3{display:none}nav button{width:auto;white-space:n
 main{grid-row:2;padding:16px}
 footer{grid-row:3;grid-template-columns:1fr;gap:4px;padding:8px 16px}.vol{display:none}
 .np .cover{display:none}.strip{display:none}
-.row{grid-template-columns:1fr 50px 30px}.row .ar{display:none}
+.items.list .ar,.items.compact .ar{display:none}.items.list{--c:44px 1fr 50px 30px}.items.compact{--c:1fr 50px 30px}.items.selm.list{--c:26px 44px 1fr 50px 30px}.items.selm.compact{--c:26px 1fr 50px 30px}
 }
+
+.items.list{--c:44px 1fr 140px 60px 34px}.items.compact{--c:1fr 140px 60px 34px}.items.selm.list{--c:26px 44px 1fr 140px 60px 34px}.items.selm.compact{--c:26px 1fr 140px 60px 34px}
+.th{width:44px;height:44px;border-radius:5px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:18px}
+.row .th{color:#fff}.compact .th{display:none}
+.ck{display:none;width:20px;height:20px;border:2px solid var(--mute);border-radius:50%;align-items:center;justify-content:center;font-size:12px;font-style:normal}
+.selm .ck{display:flex}.sd{background:var(--chip)}.sd .ck{background:var(--ink);color:var(--main);border-color:var(--ink)}
+.items.grid,.items.large{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.items.large{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.grid .row,.large .row{display:flex;flex-direction:column;align-items:stretch;gap:3px;padding:8px;position:relative;text-align:start}
+.grid .th,.large .th{width:100%;height:auto;aspect-ratio:1;border-radius:8px;font-size:34px}
+.grid .du,.large .du,.grid .pl,.large .pl{display:none}
+.grid .ck,.large .ck{position:absolute;top:14px;inset-inline-start:14px;background:var(--main);z-index:1}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}.hd h2{margin:0}
+.tl{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:13px}
+.tb{gap:5px;padding:6px 11px;border-radius:14px;background:var(--chip);font-size:12px}.tb:disabled{opacity:.4;cursor:default}.dg{color:#e5574a}
+.ib.act{background:var(--chip)}
+.set h3{font-size:14px;margin:22px 0 8px}.seg{display:inline-flex;flex-wrap:wrap;gap:6px}
+.seg button{padding:8px 16px;border-radius:18px;background:var(--chip);font-size:13px}.seg button[aria-pressed=true]{background:var(--ink);color:var(--main)}
+dialog{border:0;border-radius:14px;background:var(--main);color:var(--ink);padding:22px;max-width:340px;font-family:inherit}dialog::backdrop{background:#0006}
+dialog p{margin:0 0 18px;line-height:1.8}dialog form{display:flex;gap:8px;flex-wrap:wrap}dialog button{padding:8px 18px;border-radius:16px;background:var(--chip)}dialog button[value=y]{background:var(--ink);color:var(--main)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -100,7 +119,7 @@ footer{grid-row:3;grid-template-columns:1fr;gap:4px;padding:8px 16px}.vol{displa
     <div class="top">
       <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="گەڕان…" aria-label="گەڕان"></label>
       <span class="sp"></span>
-      <button class="add" id="addBtn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>زیادکردنی گۆرانی</button>
+      <button class="add" id="addBtn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span id="addT">زیادکردنی گۆرانی</span></button>
       <button class="ib" id="theme" aria-label="گۆڕینی ڕووکار"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
     </div>
     <input id="file" type="file" multiple hidden accept="audio/*,video/*,.mp3,.flac,.wav,.ogg,.oga,.opus,.m4a,.aac,.wma,.ape,.wv,.alac,.aiff,.aif,.amr,.mka,.mp2,.ac3,.dts,.webm,.caf,.tta,.mid">
@@ -121,13 +140,26 @@ footer{grid-row:3;grid-template-columns:1fr;gap:4px;padding:8px 16px}.vol{displa
     <div class="vol"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg><input type="range" id="vol" min="0" max="100" value="80" aria-label="دەنگ"></div>
   </footer>
 </div>
+<dialog id="dlg"><form method="dialog"><p id="dm"></p><button value="n" id="dn"></button><button value="y" id="dy">OK</button></form></dialog>
 <div id="toast" role="status"></div>
 <audio id="au" preload="metadata"></audio>
 <script>
 const $=s=>document.querySelector(s),au=$('#au');
-const IC={home:'M3 11 12 3l9 8M5 10v10h14V10',browse:'M3 6h18M3 12h18M3 18h18',art:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',pl:'M3 6h12M3 12h12M3 18h7M19 8v9M16 17a3 3 0 1 0 6 0',heart:'M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.800-8 11-8 11z',clock:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',play:'M7 4v16l13-8z',pause:'M7 4h3v16H7zM14 4h3v16h-3z',trash:'M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5',pcirc:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM10 8l6 4-6 4z'};
+const IC={home:'M3 11 12 3l9 8M5 10v10h14V10',browse:'M3 6h18M3 12h18M3 18h18',art:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',pl:'M3 6h12M3 12h12M3 18h7M19 8v9M16 17a3 3 0 1 0 6 0',heart:'M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.800-8 11-8 11z',clock:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',play:'M7 4v16l13-8z',pause:'M7 4h3v16H7zM14 4h3v16h-3z',trash:'M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5',check:'M5 12l4 4 10-10',dup:'M9 9h11v11H9zM5 15H4V4h11v1',gear:'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2',v_list:'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',v_compact:'M3 5h18M3 9h18M3 13h18M3 17h18M3 21h18',v_grid:'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',v_large:'M3 3h18v8H3zM3 14h18v7H3z',pcirc:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM10 8l6 4-6 4z'};
 const ic=n=>`<svg viewBox="0 0 24 24"><path d="${IC[n]}"/></svg>`;
-const NAV=[['home','سەرەکی','home'],['browse','گەڕان','browse'],['_','کتێبخانەکەت'],['artists','هونەرمەندان','art'],['lists','لیستەکان','pl'],['liked','دڵخوازەکان','heart'],['recent','نوێترین','clock']];
+const LS={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const I={home:['سەرەکی','خانه','Home'],browse:['گەڕان','مرور','Browse'],library:['کتێبخانەکەت','کتابخانه شما','Your Library'],artists:['هونەرمەندان','هنرمندان','Artists'],lists:['لیستەکان','لیست‌ها','Playlists'],liked:['دڵخوازەکان','علاقه‌مندی‌ها','Liked'],recent:['نوێترین','اخیراً پخش‌شده','Recently Played'],settings:['ڕێکخستنەکان','تنظیمات','Settings'],
+search:['گەڕان…','جستجو…','Search…'],add:['زیادکردنی گۆرانی','افزودن آهنگ','Add songs'],mine:['تایبەت بۆ تۆ','ساخته‌شده برای شما','Made for You'],all:['هەموو گۆرانییەکان','همه آهنگ‌ها','All songs'],results:['ئەنجامی گەڕان','نتایج جستجو','Search results'],none:['هیچ شتێک نەدۆزرایەوە.','موردی یافت نشد.','Nothing found.'],
+emptyT:['هێشتا گۆرانییەک نییە','هنوز آهنگی نیست','No songs yet'],emptyD:['فایلی دەنگی زیاد بکە، یان لێرە دایبنێ.','فایل صوتی اضافه کنید یا اینجا رها کنید.','Add audio files or drop them here.'],nosong:['هیچ گۆرانییەک نییە','آهنگی انتخاب نشده','No song playing'],songs:['گۆرانی','آهنگ','songs'],unknown:['نەناسراو','ناشناس','Unknown'],batch:['کۆمەڵەی','مجموعه','Batch'],
+added:['گۆرانی زیادکرا','آهنگ اضافه شد','added'],noaudio:['فایلێکی دەنگی نەدۆزرایەوە','فایل صوتی پیدا نشد','No audio files found'],restored:['گۆرانی گەڕایەوە','آهنگ بازیابی شد','restored'],likeOn:['زیادکرا بۆ دڵخوازەکان','به علاقه‌مندی‌ها اضافه شد','Added to liked'],likeOff:['لە دڵخوازەکان لابرا','از علاقه‌مندی‌ها حذف شد','Removed from liked'],
+confirmDel:['بسڕدرێتەوە؟','حذف شود؟','Delete?'],select:['دیاریکردن','انتخاب','Select'],selAll:['هەمووی','همه','All'],delSel:['سڕینەوە','حذف','Delete'],dups:['لابردنی دووبارەکان','حذف تکراری‌ها','Remove duplicates'],cancel:['هەڵوەشاندنەوە','لغو','Cancel'],selected:['دیاریکراو','انتخاب‌شده','selected'],
+noDup:['دووبارە نەدۆزرایەوە','مورد تکراری نیست','No duplicates found'],dupFound:['دووبارە دۆزرایەوە، بسڕدرێنەوە؟','مورد تکراری یافت شد. حذف شوند؟','duplicates found. Remove them?'],removed:['سڕایەوە','حذف شد','removed'],dupSel:['دووبارەکان دیاریکران','موارد تکراری انتخاب شد','Duplicates selected'],
+v_list:['لیست','لیست','List'],v_compact:['چڕ','فشرده','Compact'],v_grid:['تۆڕ','شبکه‌ای','Grid'],v_large:['گەورە','بزرگ','Large'],language:['زمان','زبان','Language'],theme:['ڕووکار','تم','Theme'],tAuto:['خۆکار','خودکار','Auto'],tLight:['ڕووناک','روشن','Light'],tDark:['تاریک','تاریک','Dark'],defView:['شێوەی پیشاندانی لیست','نحوه نمایش لیست','List layout'],
+conv:['براوزەر ئەم فۆرماتە ناخوێنێتەوە — گۆڕین بە ffmpeg…','مرورگر این فرمت را پخش نمی‌کند — تبدیل با ffmpeg…','Browser can\'t play this format — converting with ffmpeg…'],ffErr:['ffmpeg لەم شوێنەدا کار ناکات','ffmpeg در اینجا کار نمی‌کند','ffmpeg is unavailable here'],
+rep0:['دووبارەکردنەوە کوژاوەیە','تکرار خاموش','Repeat off'],rep1:['هەموو لیستەکە دووبارە دەبێتەوە','تکرار همه','Repeat all'],rep2:['ئەم گۆرانییە دووبارە دەبێتەوە','تکرار این آهنگ','Repeat one']};
+let lang=LS.get('deng-lang')||'ckb';if(!{ckb:1,fa:1,en:1}[lang])lang='ckb';
+const L=k=>(I[k]||[k,k,k])[{ckb:0,fa:1,en:2}[lang]];
+const NAV=[['home','home','home'],['browse','browse','browse'],['_','library'],['artists','artists','art'],['lists','lists','pl'],['liked','liked','heart'],['recent','recent','clock'],['settings','settings','gear']];
 let T=[],cur=-1,queue=[],view={n:'home'},shuf=false,rep=0,batch=0,ff=null,ffBusy=false;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmt=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
@@ -136,38 +168,99 @@ const bg=s=>`background:linear-gradient(135deg,hsl(${hue(s)} 55% 55%),hsl(${(hue
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2600)}
 
 /* navigation with soft transitions */
-function go(v){view=v;const el=$('#view');el.classList.add('out');setTimeout(()=>{render();el.classList.remove('out');$('main').scrollTo({top:0})},200)}
-function drawNav(){$('#nav').innerHTML=NAV.map(([k,l,i])=>k==='_'?`<h3>${l}</h3>`:`<button data-k="${k}" ${view.n===k||view.root===k?'aria-current="page"':''}>${ic(i)}${l}</button>`).join('');
+function go(v){view=v;selMode=false;sel.clear();const el=$('#view');el.classList.add('out');setTimeout(()=>{render();el.classList.remove('out');$('main').scrollTo({top:0})},200)}
+function drawNav(){$('#nav').innerHTML=NAV.map(([k,l,i])=>k==='_'?`<h3>${L(l)}</h3>`:`<button data-k="${k}" ${view.n===k||view.root===k?'aria-current="page"':''}>${ic(i)}${L(l)}</button>`).join('');
  document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go({n:b.dataset.k}))}
-function rowHtml(t){return `<button class="row ${t.id===(T[cur]||{}).id?'on':''}" data-id="${t.id}"><b>${esc(t.title)}</b><span class="ar">${esc(t.artist)}</span><span>${fmt(t.dur)}</span><span class="pl">${ic('pcirc')}</span></button>`}
-function listHtml(a){return a.length?a.map(rowHtml).join(''):''}
-function emptyHtml(){return `<div class="empty"><b>هێشتا گۆرانییەک نییە</b>فایلی دەنگی زیاد بکە، یان لێرە دایبنێ.<br>MP3، FLAC، WAV، OGG، OPUS، M4A، WMA، APE و فۆرماتی تر.</div>`}
-function groupsHtml(map,kind){return `<div class="groups">${[...map].map(([k,a])=>`<button class="g" data-g="${esc(k)}" data-kind="${kind}"><div class="cover" style="${bg(k)}">♪</div><b>${esc(k)}</b><small>${a.length} گۆرانی</small></button>`).join('')}</div>`}
+let sel=new Set(),selMode=false,vm=LS.get('deng-vm')||'list';
+const VM=['list','compact','grid','large'];if(!VM.includes(vm))vm='list';
+const nm=a=>!a||a==='نەناسراو'?L('unknown'):a;
+const ln=l=>/\d+/.test(l)?L('batch')+' '+l.match(/\d+/)[0]:l;
+const art=t=>t.cu?`background-image:url(${t.cu})`:bg(t.title);
+function ask(m){return new Promise(ok=>{const d=$('#dlg');$('#dm').textContent=m;d.showModal();d.onclose=()=>ok(d.returnValue==='y')})}
+function rowHtml(t){return `<button class="row ${t.id===(T[cur]||{}).id?'on':''} ${sel.has(t.id)?'sd':''}" data-id="${t.id}"><i class="ck">${sel.has(t.id)?ic('check'):''}</i><span class="th" style="${art(t)}">${t.cu?'':'♪'}</span><b>${esc(t.title)}</b><span class="ar">${esc(nm(t.artist))}</span><span class="du">${fmt(t.dur)}</span><span class="pl">${ic('pcirc')}</span></button>`}
+function listHtml(a){return `<div class="items ${vm} ${selMode?'selm':''}">${a.map(rowHtml).join('')}</div>`}
+function emptyHtml(){return `<div class="empty"><b>${L('emptyT')}</b>${L('emptyD')}<br>MP3، FLAC، WAV، OGG، OPUS، M4A، WMA، APE…</div>`}
+function groupsHtml(map,kind){return `<div class="groups">${[...map].map(([k,a])=>{const c=a.find(x=>x.cu);return `<button class="g" data-g="${esc(k)}" data-kind="${kind}"><div class="cover" style="${c?art(c):bg(k)}">${c?'':'♪'}</div><b>${esc(k)}</b><small>${a.length} ${L('songs')}</small></button>`}).join('')}</div>`}
 function groupBy(f){const m=new Map();T.forEach(t=>{const k=f(t);(m.get(k)||m.set(k,[]).get(k)).push(t)});return m}
+function tools(){
+ if(selMode)return `<div class="tl"><span>${sel.size} ${L('selected')}</span><button class="tb" data-a="all">${L('selAll')}</button><button class="tb dg" data-a="del" ${sel.size?'':'disabled'}>${ic('trash')}${L('delSel')}</button><button class="tb" data-a="dup">${ic('dup')}${L('dups')}</button><button class="tb" data-a="cancel">${L('cancel')}</button></div>`;
+ return `<div class="tl">${VM.map(v=>`<button class="ib ${vm===v?'act':''}" data-vm="${v}" aria-label="${L('v_'+v)}" title="${L('v_'+v)}">${ic('v_'+v)}</button>`).join('')}<button class="tb" data-a="sel">${ic('check')}${L('select')}</button><button class="tb" data-a="dup">${ic('dup')}${L('dups')}</button></div>`}
+const hd=t=>`<div class="hd"><h2>${esc(t)}</h2>${tools()}</div>`;
+function settingsHtml(){
+ const seg=(arr,c,k)=>`<div class="seg">${arr.map(([v,l])=>`<button aria-pressed="${c===v}" data-s="${k}" data-v="${v}">${l}</button>`).join('')}</div>`;
+ return `<h2>${L('settings')}</h2><div class="set"><h3>${L('language')}</h3>${seg([['ckb','کوردی سۆرانی'],['fa','فارسی'],['en','English']],lang,'lang')}<h3>${L('theme')}</h3>${seg([['auto',L('tAuto')],['light',L('tLight')],['dark',L('tDark')]],LS.get('deng-theme')||'auto','theme')}<h3>${L('defView')}</h3>${seg(VM.map(v=>[v,L('v_'+v)]),vm,'vm')}</div>`}
 function render(){
- drawNav();const q=$('#q').value.trim().toLowerCase();let h='';let rows=T;
+ drawNav();const q=$('#q').value.trim().toLowerCase();let h='',rows=T;
  if(q)rows=T.filter(t=>(t.title+t.artist).toLowerCase().includes(q));
  const n=view.n;
- if(n==='home'&&!q){
+ if(n==='settings'&&!q)h=settingsHtml();
+ else if(n==='home'&&!q){
   const t=T[cur]||T[0];
-  h=T.length?`<div class="hero"><div class="cover" style="${bg(t.title)}">♪</div><div><h1>${esc(t.title)}</h1><p>${esc(t.artist)}</p></div><div class="strip">${T.slice(0,4).map(x=>`<button class="cover" data-id="${x.id}" style="${bg(x.title)}" aria-label="${esc(x.title)}">♪</button>`).join('')}</div></div><h2>تایبەت بۆ تۆ</h2>${listHtml(T)}`:emptyHtml();
- }else if(n==='artists'&&!q)h=T.length?groupsHtml(groupBy(t=>t.artist),'a'):emptyHtml();
- else if(n==='lists'&&!q)h=T.length?groupsHtml(groupBy(t=>t.list),'l'):emptyHtml();
+  h=T.length?`<div class="hero"><div class="cover" style="${art(t)}">${t.cu?'':'♪'}</div><div><h1>${esc(t.title)}</h1><p>${esc(nm(t.artist))}</p></div><div class="strip">${T.slice(0,4).map(x=>`<button class="cover" data-id="${x.id}" style="${art(x)}" aria-label="${esc(x.title)}">${x.cu?'':'♪'}</button>`).join('')}</div></div>${hd(L('mine'))}${listHtml(T)}`:emptyHtml();
+ }else if(n==='artists'&&!q)h=T.length?groupsHtml(groupBy(t=>nm(t.artist)),'a'):emptyHtml();
+ else if(n==='lists'&&!q)h=T.length?groupsHtml(groupBy(t=>ln(t.list)),'l'):emptyHtml();
  else{
-  let title='هەموو گۆرانییەکان';
-  if(n==='liked'){rows=rows.filter(t=>t.liked);title='دڵخوازەکان'}
-  if(n==='recent'){rows=rows.filter(t=>t.played).sort((a,b)=>b.played-a.played);title='نوێترین'}
-  if(n==='group'){rows=rows.filter(t=>(view.kind==='a'?t.artist:t.list)===view.k);title=view.k}
-  if(q)title='ئەنجامی گەڕان';
-  h=`<h2>${esc(title)}</h2>`+(rows.length?listHtml(rows):T.length?'<div class="empty">هیچ شتێک نەدۆزرایەوە.</div>':emptyHtml());
+  let title=L('all');
+  if(n==='liked'){rows=rows.filter(t=>t.liked);title=L('liked')}
+  if(n==='recent'){rows=rows.filter(t=>t.played).sort((a,b)=>b.played-a.played);title=L('recent')}
+  if(n==='group'){rows=rows.filter(t=>(view.kind==='a'?nm(t.artist):ln(t.list))===view.k);title=view.k}
+  if(q)title=L('results');
+  h=(rows.length?hd(title)+listHtml(rows):`<h2>${esc(title)}</h2>`+(T.length?`<div class="empty">${L('none')}</div>`:emptyHtml()));
   queue=rows.map(t=>t.id);
  }
  if(n==='home'||n==='artists'||n==='lists')queue=T.map(t=>t.id);
  $('#view').innerHTML=h;
- document.querySelectorAll('#view .row,#view button[data-id]').forEach(b=>b.onclick=()=>playId(+b.dataset.id));
+ document.querySelectorAll('#view .row,#view button[data-id]').forEach(b=>b.onclick=()=>selMode&&b.classList.contains('row')?tog(+b.dataset.id):playId(+b.dataset.id));
  document.querySelectorAll('#view .g').forEach(b=>b.onclick=()=>go({n:'group',k:b.dataset.g,kind:b.dataset.kind,root:b.dataset.kind==='a'?'artists':'lists'}));
+ document.querySelectorAll('#view [data-vm]').forEach(b=>b.onclick=()=>{vm=b.dataset.vm;LS.set('deng-vm',vm);softRefresh()});
+ document.querySelectorAll('#view [data-a]').forEach(b=>b.onclick=()=>act(b.dataset.a));
+ document.querySelectorAll('#view [data-s]').forEach(b=>b.onclick=()=>{const v=b.dataset.v,k=b.dataset.s;
+  if(k==='lang'){lang=v;LS.set('deng-lang',v);if(view.n==='group')view={n:view.root};applyLang()}
+  if(k==='theme')applyTheme(v);if(k==='vm'){vm=v;LS.set('deng-vm',v)}softRefresh()});
 }
+function tog(id){sel.has(id)?sel.delete(id):sel.add(id);softRefresh()}
+function findDups(){const a=new Set(),b=new Set(),d=[];T.forEach(t=>{const k1=t.file.size,k2=(t.title+'|'+(t.artist||'')).toLowerCase().replace(/\s+/g,' ').trim();if(a.has(k1)||b.has(k2))d.push(t.id);else{a.add(k1);b.add(k2)}});return d}
+function resetNow(){$('#npt').textContent=L('nosong');$('#npa').textContent='';$('#npc').removeAttribute('style');$('#npc').textContent='♪';$('#cur').textContent='0:00';$('#dur').textContent='0:00';$('#seek').value=0;setP($('#seek'),0);likeUI()}
+function removeTracks(ids){
+ const S=new Set(ids),ct=T[cur]&&T[cur].id;
+ ids.forEach(id=>tx('readwrite',s=>s.delete(id)));
+ T.filter(t=>S.has(t.id)).forEach(t=>{[t.url,t.conv,t.cu].forEach(u=>u&&URL.revokeObjectURL(u))});
+ T=T.filter(t=>!S.has(t.id));sel.clear();
+ if(S.has(ct)){au.pause();au.removeAttribute('src');au.load();cur=-1;resetNow()}else cur=T.findIndex(t=>t.id===ct);
+}
+async function act(a){
+ if(a==='sel'){selMode=true}
+ else if(a==='cancel'){selMode=false;sel.clear()}
+ else if(a==='all'){sel=new Set(queue)}
+ else if(a==='dup'){const d=findDups();if(!d.length)return toast(L('noDup'));
+  if(selMode){sel=new Set(d);toast(d.length+' '+L('dupSel'))}
+  else if(await ask(d.length+' '+L('dupFound'))){removeTracks(d);toast(d.length+' '+L('removed'))}}
+ else if(a==='del'){if(!sel.size||!await ask(sel.size+' — '+L('confirmDel')))return;const n=sel.size;removeTracks([...sel]);selMode=false;toast(n+' '+L('removed'))}
+ softRefresh()}
+function applyTheme(v){const r=document.documentElement;v==='auto'?delete r.dataset.theme:r.dataset.theme=v;LS.set('deng-theme',v)}
+function applyLang(){const r=document.documentElement;r.lang=lang;r.dir=lang==='en'?'ltr':'rtl';
+ $('#q').placeholder=L('search');$('#q').setAttribute('aria-label',L('search'));$('#addT').textContent=L('add');
+ $('#theme').setAttribute('aria-label',L('theme'));$('#like').setAttribute('aria-label',L('liked'));$('#del').setAttribute('aria-label',L('delSel'));
+ $('#dn').textContent=L('cancel');if(cur<0)$('#npt').textContent=L('nosong');if(cur>=0)showNow()}
 
+/* embedded cover art: ID3v2 (MP3), FLAC picture, MP4/M4A covr */
+const u32=(b,i)=>((b[i]<<24)|(b[i+1]<<16)|(b[i+2]<<8)|b[i+3])>>>0,ss=(b,i)=>(b[i]<<21)|(b[i+1]<<14)|(b[i+2]<<7)|b[i+3];
+const mk=u=>u&&u.length>100?new Blob([u],{type:u[0]===0x89?'image/png':u[0]===0x47?'image/gif':u[0]===0x52?'image/webp':'image/jpeg'}):null;
+async function getCover(f){try{
+ const h=new Uint8Array(await f.slice(0,10).arrayBuffer());
+ if(h[0]===73&&h[1]===68&&h[2]===51&&h[3]>=3){const v=h[3],b=new Uint8Array(await f.slice(0,Math.min(f.size,ss(h,6)+10)).arrayBuffer());let p=10;
+  while(p+10<b.length&&b[p]){const id=String.fromCharCode(b[p],b[p+1],b[p+2],b[p+3]),sz=v===4?ss(b,p+4):u32(b,p+4),d=p+10;
+   if(id==='APIC'){const e=b[d];let i=d+1;while(b[i])i++;i+=2;
+    if(e===1||e===2){while(!(b[i]===0&&b[i+1]===0)&&i<d+sz)i+=2;i+=2}else{while(b[i])i++;i++}
+    return mk(b.slice(i,d+sz))}
+   p=d+sz}return null}
+ if(h[0]===0x66&&h[1]===0x4c&&h[2]===0x61){const b=new Uint8Array(await f.slice(0,Math.min(f.size,8e6)).arrayBuffer());let p=4;
+  while(p+4<b.length){const last=b[p]>>7,ty=b[p]&127,len=(b[p+1]<<16)|(b[p+2]<<8)|b[p+3];
+   if(ty===6){let i=p+8;i+=4+u32(b,i);i+=4+u32(b,i)+16;const n=u32(b,i);return mk(b.slice(i+4,i+4+n))}
+   p+=4+len;if(last)break}return null}
+ if(String.fromCharCode(h[4],h[5],h[6],h[7])==='ftyp'){const b=new Uint8Array(await f.slice(0,Math.min(f.size,3e6)).arrayBuffer());
+  for(let i=0;i<b.length-24;i++)if(b[i]===99&&b[i+1]===111&&b[i+2]===118&&b[i+3]===114)return mk(b.slice(i+20,i+4+u32(b,i+4)))}
+}catch(e){}return null}
 /* importing */
 function parse(name){const base=name.replace(/\.[^.]+$/,'').replace(/_/g,' ');const m=base.split(/\s+-\s+/);return m.length>1?{artist:m[0].trim(),title:m.slice(1).join(' - ').trim()}:{artist:'نەناسراو',title:base.trim()}}
 async function addFiles(files){
@@ -175,11 +268,11 @@ async function addFiles(files){
  for(const f of list){
   if(f.type&&!/^(audio|video)\//.test(f.type)&&f.type!=='application/ogg')continue;
   const p=parse(f.name),t={id:Date.now()+Math.random(),file:f,url:URL.createObjectURL(f),liked:false,played:0,dur:0,list:'کۆمەڵەی '+batch,...p};
-  t.id=T.length?T[T.length-1].id+1:1;T.push(t);ok++;save(t);
+  t.id=T.length?T[T.length-1].id+1:1;T.push(t);ok++;save(t);getCover(f).then(c=>{if(c){t.cover=c;t.cu=URL.createObjectURL(c);save(t);softRefresh();if(T[cur]===t)showNow()}});
   const probe=new Audio();probe.preload='metadata';probe.src=t.url;
   probe.onloadedmetadata=()=>{t.dur=probe.duration;save(t);if(view.n!=='artists'&&view.n!=='lists')softRefresh()};
  }
- if(ok){toast(ok+' گۆرانی زیادکرا');if(cur<0){cur=0;showNow()}go({n:view.n==='group'?'home':view.n,k:view.k,kind:view.kind})}else toast('فایلێکی دەنگی نەدۆزرایەوە')
+ if(ok){toast(ok+' '+L('added'));if(cur<0){cur=0;showNow()}go({n:view.n==='group'?'home':view.n,k:view.k,kind:view.kind})}else toast(L('noaudio'))
 }
 function softRefresh(){const y=$('main').scrollTop;render();$('main').scrollTop=y}
 $('#addBtn').onclick=()=>$('#file').click();
@@ -190,15 +283,13 @@ addEventListener('drop',e=>{e.preventDefault();addFiles(e.dataTransfer.files)});
 /* IndexedDB: tracks persist between sessions */
 const DB=new Promise((ok,no)=>{const r=indexedDB.open('deng',1);r.onupgradeneeded=()=>r.result.createObjectStore('tracks',{keyPath:'id'});r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
 const tx=async(m,f)=>{try{const d=await DB;return await new Promise((ok,no)=>{const s=d.transaction('tracks',m).objectStore('tracks'),r=f(s);r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)})}catch(e){return null}};
-const save=t=>tx('readwrite',s=>s.put({id:t.id,file:t.file,title:t.title,artist:t.artist,dur:t.dur,liked:t.liked,played:t.played,list:t.list}));
+const save=t=>tx('readwrite',s=>s.put({id:t.id,file:t.file,title:t.title,artist:t.artist,dur:t.dur,liked:t.liked,played:t.played,list:t.list,cover:t.cover||null}));
 async function restore(){const a=await tx('readonly',s=>s.getAll());if(!a||!a.length)return;
- a.sort((x,y)=>x.id-y.id).forEach(r=>{T.push({...r,url:URL.createObjectURL(r.file)});batch=Math.max(batch,parseInt((r.list.match(/\d+/)||[0])[0])||0)});
- cur=-1;render();toast(T.length+' گۆرانی گەڕایەوە');if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}
+ a.sort((x,y)=>x.id-y.id).forEach(r=>{T.push({...r,url:URL.createObjectURL(r.file),cu:r.cover?URL.createObjectURL(r.cover):''});batch=Math.max(batch,parseInt((r.list.match(/\d+/)||[0])[0])||0)});
+ cur=-1;render();toast(T.length+' '+L('restored'));if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}
 function likeUI(){const t=T[cur],b=$('#like');b.innerHTML=ic('heart');b.firstChild.style.fill=t&&t.liked?'currentColor':'none';$('#del').innerHTML=ic('trash')}
-$('#like').onclick=()=>{const t=T[cur];if(!t)return;t.liked=!t.liked;save(t);likeUI();toast(t.liked?'زیادکرا بۆ دڵخوازەکان':'لە دڵخوازەکان لابرا');if(view.n==='liked')softRefresh()};
-$('#del').onclick=()=>{const t=T[cur];if(!t||!confirm('«'+t.title+'» بسڕدرێتەوە؟'))return;
- au.pause();au.removeAttribute('src');au.load();URL.revokeObjectURL(t.url);if(t.conv)URL.revokeObjectURL(t.conv);tx('readwrite',s=>s.delete(t.id));
- T.splice(cur,1);cur=-1;$('#npt').textContent='هیچ گۆرانییەک نییە';$('#npa').textContent='';$('#npc').removeAttribute('style');$('#npc').textContent='♪';$('#cur').textContent='0:00';$('#dur').textContent='0:00';$('#seek').value=0;setP($('#seek'),0);likeUI();softRefresh()};
+$('#like').onclick=()=>{const t=T[cur];if(!t)return;t.liked=!t.liked;save(t);likeUI();toast(t.liked?L('likeOn'):L('likeOff'));if(view.n==='liked')softRefresh()};
+$('#del').onclick=async()=>{const t=T[cur];if(!t||!await ask('«'+t.title+'» '+L('confirmDel')))return;removeTracks([t.id]);softRefresh()};
 
 /* playback */
 const idx=id=>T.findIndex(t=>t.id===id);
@@ -207,8 +298,8 @@ function load(i,go_){
  cur=i;const t=T[i];t.played=Date.now();save(t);showNow();au.src=t.conv||t.url;
  if(go_)au.play().catch(()=>{});softRefresh();
 }
-function showNow(){const t=T[cur];if(!t)return;likeUI();$('#npt').textContent=t.title;$('#npa').textContent=t.artist;$('#npc').setAttribute('style',bg(t.title));
- if('mediaSession'in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:t.artist});
+function showNow(){const t=T[cur];if(!t)return;likeUI();$('#npt').textContent=t.title;$('#npa').textContent=nm(t.artist);$('#npc').setAttribute('style',art(t));$('#npc').textContent=t.cu?'':'♪';
+ if('mediaSession'in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:nm(t.artist),artwork:t.cu?[{src:t.cu}]:[]});
  navigator.mediaSession.setActionHandler('play',()=>au.play());navigator.mediaSession.setActionHandler('pause',()=>au.pause());
  navigator.mediaSession.setActionHandler('previoustrack',prev);navigator.mediaSession.setActionHandler('nexttrack',next)}}
 function step(d){if(!T.length)return;const q=queue.length?queue:T.map(t=>t.id);let i=q.indexOf(T[cur]&&T[cur].id);
@@ -218,7 +309,7 @@ function prev(){if(au.currentTime>3)au.currentTime=0;else step(-1)}
 $('#next').onclick=next;$('#prev').onclick=prev;
 $('#play').onclick=()=>{if(cur<0)return $('#addBtn').click();au.paused?au.play():au.pause()};
 $('#shuf').onclick=e=>{shuf=!shuf;e.currentTarget.classList.toggle('on',shuf)};
-$('#rep').onclick=e=>{rep=(rep+1)%3;e.currentTarget.classList.toggle('on',rep>0);au.loop=rep===2;toast(['دووبارەکردنەوە کوژاوەیە','هەموو لیستەکە دووبارە دەبێتەوە','ئەم گۆرانییە دووبارە دەبێتەوە'][rep])};
+$('#rep').onclick=e=>{rep=(rep+1)%3;e.currentTarget.classList.toggle('on',rep>0);au.loop=rep===2;toast(L('rep'+rep))};
 au.onplay=()=>$('#play').innerHTML=ic('pause');au.onpause=()=>$('#play').innerHTML=ic('play');$('#play').innerHTML=ic('play');
 au.onended=()=>{if(rep===0&&queue.indexOf(T[cur].id)===queue.length-1)return;next()};
 const setP=(el,v)=>el.style.setProperty('--p',v+'%');
@@ -232,7 +323,7 @@ addEventListener('keydown',e=>{if(/INPUT|TEXTAREA/.test(e.target.tagName))return
 const addScript=s=>new Promise((ok,no)=>{const e=document.createElement('script');e.src=s;e.onload=ok;e.onerror=no;document.head.appendChild(e)});
 async function loadFF(){if(window.FFmpegWASM)return;try{await addScript('vendor/ffmpeg/ffmpeg.js')}catch(e){await addScript('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js')}}
 au.onerror=async()=>{
- const t=T[cur];if(!t||t.conv||ffBusy||!au.src)return;ffBusy=true;toast('براوزەر ئەم فۆرماتە ناخوێنێتەوە — گۆڕین بە ffmpeg…');
+ const t=T[cur];if(!t||t.conv||ffBusy||!au.src)return;ffBusy=true;toast(L('conv'));
  try{
   if(!ff){await loadFF();
    const {FFmpeg}=FFmpegWASM;ff=new FFmpeg();
@@ -244,14 +335,14 @@ au.onerror=async()=>{
   const out=await ff.readFile('out.wav');t.conv=URL.createObjectURL(new Blob([out.buffer],{type:'audio/wav'}));
   await ff.deleteFile('in');await ff.deleteFile('out.wav');
   if(T[cur]===t){au.src=t.conv;au.play().catch(()=>{})}
- }catch(e){ff=null;toast('ffmpeg لەم شوێنەدا کار ناکات — ئەپەکە لەسەر هۆستی خۆت دابنێ')}
+ }catch(e){ff=null;toast(L('ffErr'))}
  ffBusy=false};
 
 /* misc */
-$('#q').oninput=()=>{if(view.n==='home'||view.n==='artists'||view.n==='lists')view.n='browse';render()};
-$('#theme').onclick=()=>{const r=document.documentElement,d=matchMedia('(prefers-color-scheme:dark)').matches;const now=r.dataset.theme||(d?'dark':'light');r.dataset.theme=now==='dark'?'light':'dark'};
+$('#q').oninput=()=>{if(['home','artists','lists','settings'].includes(view.n))view.n='browse';render()};
+$('#theme').onclick=()=>{const d=matchMedia('(prefers-color-scheme:dark)').matches,now=document.documentElement.dataset.theme||(d?'dark':'light');applyTheme(now==='dark'?'light':'dark');if(view.n==='settings')softRefresh()};
 if('serviceWorker'in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').catch(()=>{});
-likeUI();render();restore();
+applyTheme(LS.get('deng-theme')||'auto');applyLang();likeUI();render();restore();
 </script>
 </body>
 </html>
