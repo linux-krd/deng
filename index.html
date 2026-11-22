@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>دەنگ</title>
+<title>جریوە</title>
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" href="icons/icon.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -23,7 +23,7 @@ svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-lin
 .app{width:100%;height:100%;background:var(--main);display:grid;grid-template-columns:230px 1fr;grid-template-rows:1fr 84px;overflow:hidden}
 aside{grid-row:1;background:var(--side);padding:22px 18px;overflow:auto}
 .logo{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700;margin-bottom:26px}
-.logo img{width:36px;height:36px;display:block}
+
 nav button{width:100%;justify-content:flex-start;gap:10px;padding:7px 12px;border:2px solid transparent;border-radius:8px;font-size:14px;margin-bottom:6px;color:var(--mute);transition:background .2s,border-color .2s,color .2s}
 nav button:hover{background:var(--hover)}
 nav button[aria-current=page]{background:var(--chip);color:var(--ink);font-weight:500}
@@ -84,7 +84,7 @@ aside{grid-row:1;padding:10px 12px;display:flex;align-items:center;gap:6px;overf
 nav{display:flex;gap:4px}nav h3{display:none}nav button{width:auto;white-space:nowrap;margin:0;padding:6px 10px}
 main{grid-row:2;padding:16px}
 footer{grid-row:3;grid-template-columns:1fr;gap:4px;padding:8px 16px}.vol{display:none}
-.np .cover{display:none}.strip{display:none}
+.cw{display:none}.strip{display:none}
 .items.list .ar,.items.compact .ar{display:none}.items.list{--c:44px 1fr 50px 30px}.items.compact{--c:1fr 50px 30px}.items.selm.list{--c:26px 44px 1fr 50px 30px}.items.selm.compact{--c:26px 1fr 50px 30px}
 }
 
@@ -107,13 +107,23 @@ footer{grid-row:3;grid-template-columns:1fr;gap:4px;padding:8px 16px}.vol{displa
 dialog{border:0;border-radius:14px;background:var(--main);color:var(--ink);padding:22px;max-width:340px;font-family:inherit}dialog::backdrop{background:#0006}
 dialog p{margin:0 0 18px;line-height:1.8}dialog form{display:flex;gap:8px;flex-wrap:wrap}dialog button{padding:8px 18px;border-radius:16px;background:var(--chip)}dialog button[value=y]{background:var(--ink);color:var(--main)}
 .about{max-width:460px;margin:10px auto;text-align:center}.about img{display:block;margin:0 auto 8px}.about h1{margin:0 0 6px;font-size:26px}.about p{color:var(--mute);margin:0 0 20px;line-height:1.9}.ab{display:flex;justify-content:space-between;gap:12px;padding:13px 4px;border-bottom:1px solid var(--line);font-size:14px;text-align:start}.ab span{color:var(--mute)}.ab a{color:var(--ink);text-underline-offset:3px}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+main,aside{scrollbar-width:none}main::-webkit-scrollbar,aside::-webkit-scrollbar{display:none}
+.logo img,.about img{object-fit:contain;background:linear-gradient(135deg,#ffffffb0,#ffffff30);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid #ffffff90;box-shadow:0 4px 14px #0002,inset 0 1px 0 #fff9}
+.logo img{width:42px;height:42px;padding:5px;border-radius:13px}.about img{width:120px;height:120px;padding:12px;border-radius:30px}
+.cw{position:relative;flex:none}.np .cover{width:60px;height:60px}
+.cw.pl .cover{animation:pulse 2.4s ease-in-out infinite}
+.eq{position:absolute;inset-inline-end:4px;bottom:4px;display:none;gap:2px;align-items:flex-end;height:18px;padding:3px;border-radius:5px;background:#0007;font-style:normal}
+.cw.pl .eq{display:flex}.eq s{display:block;width:3px;height:20%;background:#fff;border-radius:1px;animation:eq .9s ease-in-out infinite}
+.eq s:nth-child(2){animation-delay:.25s}.eq s:nth-child(3){animation-delay:.5s}
+@keyframes eq{0%,100%{height:20%}50%{height:100%}}
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 #4a6fd055}50%{transform:scale(1.06);box-shadow:0 0 0 8px #4a6fd000}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.cw.pl .cover,.eq s{animation:none!important}}
 </style>
 </head>
 <body>
 <div class="app">
   <aside>
-    <div class="logo"><img src="icons/icon.png" alt="" width="36" height="36"><span>دەنگ</span></div>
+    <div class="logo"><img src="icons/icon.png" alt="" width="36" height="36"><span>جریوە</span></div>
     <nav id="nav"></nav>
   </aside>
   <main>
@@ -127,7 +137,7 @@ dialog p{margin:0 0 18px;line-height:1.8}dialog form{display:flex;gap:8px;flex-w
     <div id="view"></div>
   </main>
   <footer>
-    <div class="np"><div class="cover" id="npc">♪</div><div style="min-width:0"><b id="npt">هیچ گۆرانییەک نییە</b><small id="npa"></small></div><button class="ib" id="like" aria-label="دڵخواز"></button><button class="ib" id="del" aria-label="سڕینەوە"></button></div>
+    <div class="np"><div class="cw" id="cw"><div class="cover" id="npc">♪</div><i class="eq"><s></s><s></s><s></s></i></div><div style="min-width:0"><b id="npt">هیچ گۆرانییەک نییە</b><small id="npa"></small></div><button class="ib" id="like" aria-label="دڵخواز"></button><button class="ib" id="del" aria-label="سڕینەوە"></button></div>
     <div class="ctl">
       <div class="btns">
         <button id="shuf" aria-label="تێکەڵ"><svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg></button>
@@ -191,7 +201,7 @@ const hd=t=>`<div class="hd"><h2>${esc(t)}</h2>${tools()}</div>`;
 function settingsHtml(){
  const seg=(arr,c,k)=>`<div class="seg">${arr.map(([v,l])=>`<button aria-pressed="${c===v}" data-s="${k}" data-v="${v}">${l}</button>`).join('')}</div>`;
  return `<h2>${L('settings')}</h2><div class="set"><h3>${L('language')}</h3>${seg([['ckb','کوردی سۆرانی'],['fa','فارسی'],['en','English']],lang,'lang')}<h3>${L('theme')}</h3>${seg([['auto',L('tAuto')],['light',L('tLight')],['dark',L('tDark')]],LS.get('deng-theme')||'auto','theme')}<h3>${L('defView')}</h3>${seg(VM.map(v=>[v,L('v_'+v)]),vm,'vm')}</div>`}
-const aboutHtml=()=>`<div class="about"><img src="icons/icon.png" alt="" width="120" height="120"><h1>دەنگ</h1><p>${L('aboutDesc')}</p>
+const aboutHtml=()=>`<div class="about"><img src="icons/icon.png" alt="" width="120" height="120"><h1>جریوە</h1><p>${L('aboutDesc')}</p>
 <div class="ab"><span>${L('version')}</span><b dir="ltr">1.0</b></div>
 <div class="ab"><span>${L('license')}</span><b>${L('licenseV')}</b></div>
 <div class="ab"><span>${L('designedBy')}</span><b>${L('kl')}</b></div>
@@ -204,8 +214,7 @@ function render(){
  if(n==='settings'&&!q)h=settingsHtml();
  else if(n==='about'&&!q)h=aboutHtml();
  else if(n==='home'&&!q){
-  const t=T[cur]||T[0];
-  h=T.length?`<div class="hero"><div class="cover" style="${art(t)}">${t.cu?'':'♪'}</div><div><h1>${esc(t.title)}</h1><p>${esc(nm(t.artist))}</p></div><div class="strip">${T.slice(0,4).map(x=>`<button class="cover" data-id="${x.id}" style="${art(x)}" aria-label="${esc(x.title)}">${x.cu?'':'♪'}</button>`).join('')}</div></div>${hd(L('mine'))}${listHtml(T)}`:emptyHtml();
+  h=T.length?`${hd(L('mine'))}${listHtml(T)}`:emptyHtml();
  }else if(n==='artists'&&!q)h=T.length?groupsHtml(groupBy(t=>nm(t.artist)),'a'):emptyHtml();
  else if(n==='lists'&&!q)h=T.length?groupsHtml(groupBy(t=>ln(t.list)),'l'):emptyHtml();
  else{
@@ -319,7 +328,7 @@ $('#next').onclick=next;$('#prev').onclick=prev;
 $('#play').onclick=()=>{if(cur<0)return $('#addBtn').click();au.paused?au.play():au.pause()};
 $('#shuf').onclick=e=>{shuf=!shuf;e.currentTarget.classList.toggle('on',shuf)};
 $('#rep').onclick=e=>{rep=(rep+1)%3;e.currentTarget.classList.toggle('on',rep>0);au.loop=rep===2;toast(L('rep'+rep))};
-au.onplay=()=>$('#play').innerHTML=ic('pause');au.onpause=()=>$('#play').innerHTML=ic('play');$('#play').innerHTML=ic('play');
+au.onplay=()=>{$('#play').innerHTML=ic('pause');$('#cw').classList.add('pl')};au.onpause=()=>{$('#play').innerHTML=ic('play');$('#cw').classList.remove('pl')};$('#play').innerHTML=ic('play');
 au.onended=()=>{if(rep===0&&queue.indexOf(T[cur].id)===queue.length-1)return;next()};
 const setP=(el,v)=>el.style.setProperty('--p',v+'%');
 au.ontimeupdate=()=>{if(!au.duration)return;const v=au.currentTime/au.duration*1000;$('#seek').value=v;setP($('#seek'),v/10);$('#cur').textContent=fmt(au.currentTime)};

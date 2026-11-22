@@ -1,4 +1,4 @@
-const CACHE = 'deng-v4';
+const CACHE = 'deng-v5';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon.png', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {
