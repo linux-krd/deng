@@ -106,6 +106,7 @@ footer{grid-row:3;grid-template-columns:1fr;gap:4px;padding:8px 16px}.vol{displa
 .seg button{padding:8px 16px;border-radius:18px;background:var(--chip);font-size:13px}.seg button[aria-pressed=true]{background:var(--ink);color:var(--main)}
 dialog{border:0;border-radius:14px;background:var(--main);color:var(--ink);padding:22px;max-width:340px;font-family:inherit}dialog::backdrop{background:#0006}
 dialog p{margin:0 0 18px;line-height:1.8}dialog form{display:flex;gap:8px;flex-wrap:wrap}dialog button{padding:8px 18px;border-radius:16px;background:var(--chip)}dialog button[value=y]{background:var(--ink);color:var(--main)}
+.about{max-width:460px;margin:10px auto;text-align:center}.about img{display:block;margin:0 auto 8px}.about h1{margin:0 0 6px;font-size:26px}.about p{color:var(--mute);margin:0 0 20px;line-height:1.9}.ab{display:flex;justify-content:space-between;gap:12px;padding:13px 4px;border-bottom:1px solid var(--line);font-size:14px;text-align:start}.ab span{color:var(--mute)}.ab a{color:var(--ink);text-underline-offset:3px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -145,7 +146,7 @@ dialog p{margin:0 0 18px;line-height:1.8}dialog form{display:flex;gap:8px;flex-w
 <audio id="au" preload="metadata"></audio>
 <script>
 const $=s=>document.querySelector(s),au=$('#au');
-const IC={home:'M3 11 12 3l9 8M5 10v10h14V10',browse:'M3 6h18M3 12h18M3 18h18',art:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',pl:'M3 6h12M3 12h12M3 18h7M19 8v9M16 17a3 3 0 1 0 6 0',heart:'M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.800-8 11-8 11z',clock:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',play:'M7 4v16l13-8z',pause:'M7 4h3v16H7zM14 4h3v16h-3z',trash:'M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5',check:'M5 12l4 4 10-10',dup:'M9 9h11v11H9zM5 15H4V4h11v1',gear:'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2',v_list:'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',v_compact:'M3 5h18M3 9h18M3 13h18M3 17h18M3 21h18',v_grid:'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',v_large:'M3 3h18v8H3zM3 14h18v7H3z',pcirc:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM10 8l6 4-6 4z'};
+const IC={home:'M3 11 12 3l9 8M5 10v10h14V10',browse:'M3 6h18M3 12h18M3 18h18',art:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',pl:'M3 6h12M3 12h12M3 18h7M19 8v9M16 17a3 3 0 1 0 6 0',heart:'M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.800-8 11-8 11z',clock:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',play:'M7 4v16l13-8z',pause:'M7 4h3v16H7zM14 4h3v16h-3z',trash:'M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5',check:'M5 12l4 4 10-10',dup:'M9 9h11v11H9zM5 15H4V4h11v1',info:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 11v5M12 8h.01',gear:'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2',v_list:'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',v_compact:'M3 5h18M3 9h18M3 13h18M3 17h18M3 21h18',v_grid:'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',v_large:'M3 3h18v8H3zM3 14h18v7H3z',pcirc:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM10 8l6 4-6 4z'};
 const ic=n=>`<svg viewBox="0 0 24 24"><path d="${IC[n]}"/></svg>`;
 const LS={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
 const I={home:['سەرەکی','خانه','Home'],browse:['گەڕان','مرور','Browse'],library:['کتێبخانەکەت','کتابخانه شما','Your Library'],artists:['هونەرمەندان','هنرمندان','Artists'],lists:['لیستەکان','لیست‌ها','Playlists'],liked:['دڵخوازەکان','علاقه‌مندی‌ها','Liked'],recent:['نوێترین','اخیراً پخش‌شده','Recently Played'],settings:['ڕێکخستنەکان','تنظیمات','Settings'],
@@ -158,8 +159,9 @@ v_list:['لیست','لیست','List'],v_compact:['چڕ','فشرده','Compact'],
 conv:['براوزەر ئەم فۆرماتە ناخوێنێتەوە — گۆڕین بە ffmpeg…','مرورگر این فرمت را پخش نمی‌کند — تبدیل با ffmpeg…','Browser can\'t play this format — converting with ffmpeg…'],ffErr:['ffmpeg لەم شوێنەدا کار ناکات','ffmpeg در اینجا کار نمی‌کند','ffmpeg is unavailable here'],
 rep0:['دووبارەکردنەوە کوژاوەیە','تکرار خاموش','Repeat off'],rep1:['هەموو لیستەکە دووبارە دەبێتەوە','تکرار همه','Repeat all'],rep2:['ئەم گۆرانییە دووبارە دەبێتەوە','تکرار این آهنگ','Repeat one']};
 let lang=LS.get('deng-lang')||'ckb';if(!{ckb:1,fa:1,en:1}[lang])lang='ckb';
+Object.assign(I,{about:['دەربارە','درباره','About'],aboutDesc:['موزیک پلەیەرێکی سووک و بێ سێرڤەر کە لەناو براوزەردا کار دەکات.','پخش‌کننده موسیقی سبک و بدون سرور که داخل مرورگر کار می‌کند.','A lightweight, serverless music player that runs in your browser.'],license:['مۆڵەت','مجوز','License'],licenseV:['MIT — سەرچاوە-کراوە','MIT — متن‌باز (Open Source)','MIT — Open Source'],designedBy:['دیزاین کراوە لەلایەن','طراحی‌شده توسط','Designed by'],kl:['کورد لینوکس','کورد لینوکس','Kurd Linux'],website:['ماڵپەڕ','وب‌سایت','Website'],github:['گیتهاب','گیت‌هاب','GitHub'],version:['وەشان','نسخه','Version']});
 const L=k=>(I[k]||[k,k,k])[{ckb:0,fa:1,en:2}[lang]];
-const NAV=[['home','home','home'],['browse','browse','browse'],['_','library'],['artists','artists','art'],['lists','lists','pl'],['liked','liked','heart'],['recent','recent','clock'],['settings','settings','gear']];
+const NAV=[['home','home','home'],['browse','browse','browse'],['_','library'],['artists','artists','art'],['lists','lists','pl'],['liked','liked','heart'],['recent','recent','clock'],['settings','settings','gear'],['about','about','info']];
 let T=[],cur=-1,queue=[],view={n:'home'},shuf=false,rep=0,batch=0,ff=null,ffBusy=false;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmt=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
@@ -189,11 +191,18 @@ const hd=t=>`<div class="hd"><h2>${esc(t)}</h2>${tools()}</div>`;
 function settingsHtml(){
  const seg=(arr,c,k)=>`<div class="seg">${arr.map(([v,l])=>`<button aria-pressed="${c===v}" data-s="${k}" data-v="${v}">${l}</button>`).join('')}</div>`;
  return `<h2>${L('settings')}</h2><div class="set"><h3>${L('language')}</h3>${seg([['ckb','کوردی سۆرانی'],['fa','فارسی'],['en','English']],lang,'lang')}<h3>${L('theme')}</h3>${seg([['auto',L('tAuto')],['light',L('tLight')],['dark',L('tDark')]],LS.get('deng-theme')||'auto','theme')}<h3>${L('defView')}</h3>${seg(VM.map(v=>[v,L('v_'+v)]),vm,'vm')}</div>`}
+const aboutHtml=()=>`<div class="about"><img src="icons/icon.png" alt="" width="120" height="120"><h1>دەنگ</h1><p>${L('aboutDesc')}</p>
+<div class="ab"><span>${L('version')}</span><b dir="ltr">1.0</b></div>
+<div class="ab"><span>${L('license')}</span><b>${L('licenseV')}</b></div>
+<div class="ab"><span>${L('designedBy')}</span><b>${L('kl')}</b></div>
+<div class="ab"><span>${L('website')}</span><a dir="ltr" href="https://linux.krd" target="_blank" rel="noopener">linux.krd</a></div>
+<div class="ab"><span>${L('github')}</span><a dir="ltr" href="https://github.com/linux-krd" target="_blank" rel="noopener">github.com/linux-krd</a></div></div>`;
 function render(){
  drawNav();const q=$('#q').value.trim().toLowerCase();let h='',rows=T;
  if(q)rows=T.filter(t=>(t.title+t.artist).toLowerCase().includes(q));
  const n=view.n;
  if(n==='settings'&&!q)h=settingsHtml();
+ else if(n==='about'&&!q)h=aboutHtml();
  else if(n==='home'&&!q){
   const t=T[cur]||T[0];
   h=T.length?`<div class="hero"><div class="cover" style="${art(t)}">${t.cu?'':'♪'}</div><div><h1>${esc(t.title)}</h1><p>${esc(nm(t.artist))}</p></div><div class="strip">${T.slice(0,4).map(x=>`<button class="cover" data-id="${x.id}" style="${art(x)}" aria-label="${esc(x.title)}">${x.cu?'':'♪'}</button>`).join('')}</div></div>${hd(L('mine'))}${listHtml(T)}`:emptyHtml();
@@ -339,7 +348,7 @@ au.onerror=async()=>{
  ffBusy=false};
 
 /* misc */
-$('#q').oninput=()=>{if(['home','artists','lists','settings'].includes(view.n))view.n='browse';render()};
+$('#q').oninput=()=>{if(['home','artists','lists','settings','about'].includes(view.n))view.n='browse';render()};
 $('#theme').onclick=()=>{const d=matchMedia('(prefers-color-scheme:dark)').matches,now=document.documentElement.dataset.theme||(d?'dark':'light');applyTheme(now==='dark'?'light':'dark');if(view.n==='settings')softRefresh()};
 if('serviceWorker'in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').catch(()=>{});
 applyTheme(LS.get('deng-theme')||'auto');applyLang();likeUI();render();restore();
