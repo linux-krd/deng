@@ -1,4 +1,4 @@
-const CACHE = 'deng-v6', FONTS = 'deng-fonts';
+const CACHE = 'deng-v7', FONTS = 'deng-fonts';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon.png', 'icons/icon-192.png', 'icons/icon-512.png'];
 // optional: only cached if you ran setup-ffmpeg.sh (missing files are ignored)
 const OPT = ['vendor/ffmpeg/ffmpeg.js', 'vendor/ffmpeg/814.ffmpeg.js', 'vendor/core/ffmpeg-core.js', 'vendor/core/ffmpeg-core.wasm'];
