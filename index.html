@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
 <style>
 :root{--bg:#fff;--side:#d4d4d4;--main:#fff;--bar:#d4d4d4;--ink:#111;--mute:#6b6b6b;--line:#e4e4e4;--chip:#d9d9d9;--hover:#f2f2f2;--focus:#111;box-sizing:border-box}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d0d0d;--side:#1c1c1c;--main:#141414;--bar:#1c1c1c;--ink:#f2f2f2;--mute:#9a9a9a;--line:#2a2a2a;--chip:#2a2a2a;--hover:#1f1f1f;--focus:#fff}}
@@ -359,7 +359,8 @@ au.onerror=async()=>{
 /* misc */
 $('#q').oninput=()=>{if(['home','artists','lists','settings','about'].includes(view.n))view.n='browse';render()};
 $('#theme').onclick=()=>{const d=matchMedia('(prefers-color-scheme:dark)').matches,now=document.documentElement.dataset.theme||(d?'dark':'light');applyTheme(now==='dark'?'light':'dark');if(view.n==='settings')softRefresh()};
-if('serviceWorker'in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+I.offlineReady=['ئێستا بێ ئینتەرنێتیش کار دەکات','اکنون بدون اینترنت هم کار می‌کند','Ready to work offline'];
+if('serviceWorker'in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(()=>{if(!LS.get('deng-offline')){LS.set('deng-offline','1');toast(L('offlineReady'))}}).catch(()=>{});
 applyTheme(LS.get('deng-theme')||'auto');applyLang();likeUI();render();restore();
 </script>
 </body>
